@@ -1,52 +1,52 @@
 # [kubinet.dev](https://kubinet.dev)
 
-`kubinet.dev`, Next.js tabanlı, blog özellikli kişisel bir web sayfası projesidir. Benim için kafama esenleri yazdığım, küçük ama bana ait bir dijital köşe. Hem kişisel portfolyo hem de not defteri gibi düşünebilirsin.
+`kubinet.dev` is a personal website project with blog features, based on Next.js. It's a small digital corner for me to write down my thoughts. You can think of it as both a personal portfolio and a notebook.
 
-## Projeyi Çalıştırma ve Kurulum
+## Running and Setting Up the Project
 
-Projeyi yerel makinenizde çalıştırmak veya bir sunucuya dağıtmak için aşağıdaki adımları izleyebilirsiniz.
+You can follow the steps below to run the project on your local machine or deploy it to a server.
 
-### 1. Gerekli Bağımlılıkların Kurulumu
+### 1. Installing Necessary Dependencies
 
-Proje dosyalarını indirdikten sonra, projenin kök dizininde terminalinizi açın ve aşağıdaki komutu çalıştırarak gerekli tüm paketleri yükleyin:
+After downloading the project files, open your terminal in the project's root directory and run the following command to install all necessary packages:
 
 ```bash
 npm install
 ```
 
-### 2. Geliştirme Ortamında Çalıştırma
+### 2. Running in Development Environment
 
-Projeyi geliştirme modunda başlatmak için aşağıdaki komutu kullanın:
+To start the project in development mode, use the following command:
 
 ```bash
 npm run dev
 ```
 
-Bu komut genellikle projeyi `http://localhost:3000` adresinde başlatır.
+This command usually starts the project at `http://localhost:3000`.
 
-### 3. Projeyi Build Etme (Production için Hazırlık)
+### 3. Building the Project (Preparation for Production)
 
-Projeyi production ortamına dağıtmadan önce optimize edilmiş bir sürümünü oluşturmanız gerekir. Bunun için aşağıdaki komutu çalıştırın:
+Before deploying the project to a production environment, you need to create an optimized version. Run the following command for this:
 
 ```bash
 npm run build
 ```
 
-Bu komut, projenin `build` edilmiş halini `.next` klasörü içine oluşturacaktır.
+This command will create the `build` version of the project in the `.next` folder.
 
-### 4. Production Ortamında Çalıştırma
+### 4. Running in Production Environment
 
-Projeyi build ettikten sonra, production modunda başlatmak için aşağıdaki komutu kullanın:
+After building the project, use the following command to start it in production mode:
 
 ```bash
 npm run start
 ```
 
-`package.json` dosyasında tanımlandığı üzere, bu komut varsayılan olarak projeyi `3001` portunda başlatacaktır (`next start -p 3001`).
+As defined in the `package.json` file, this command will start the project on port `3001` by default (`next start -p 3001`).
 
-Eğer projeyi farklı bir portta çalıştırmak isterseniz, `package.json` dosyasındaki `scripts` bölümünde yer alan `start` komutunu düzenleyebilirsiniz. Örneğin, `-p 3001` kısmını silerseniz, Next.js varsayılan olarak `3000` portunu kullanacaktır. Dilerseniz `-p <istediğiniz_port_numarası>` şeklinde farklı bir port da belirleyebilirsiniz.
+If you want to run the project on a different port, you can edit the `start` command in the `scripts` section of your `package.json` file. For example, if you remove the `-p 3001` part, Next.js will use port `3000` by default. You can also specify a different port using `-p <your_desired_port_number>`.
 
-Örnek `package.json` ilgili satır:
+Example relevant line in `package.json`:
 ```json
 // ...
 "scripts": {
@@ -57,85 +57,83 @@ Eğer projeyi farklı bir portta çalıştırmak isterseniz, `package.json` dosy
 // ...
 ```
 
-## Supabase Kurulumu
+## Supabase Setup
 
-Bu belge, `kubinet.dev` projesi için Supabase entegrasyonunun nasıl kurulacağını açıklar.
+This document explains how to set up Supabase integration for the `kubinet.dev` project.
 
-### Adımlar
+### Steps
 
-1.  **Yeni Proje Oluşturma**:
-    *   [Supabase Dashboard](https://app.supabase.com)'a gidin ve yeni bir proje oluşturun.
+1.  **Create a New Project**:
+    *   Go to the [Supabase Dashboard](https://app.supabase.com) and create a new project.
 
-2.  **Veritabanı Şemasını Kurma**:
-    *   Supabase Dashboard'da **SQL Editörü**'ne gidin.
-    *   `schema.sql` dosyasının içeriğini kopyalayın (proje içerisinde bu dosyanın olması beklenir, eğer yoksa manuel oluşturmanız gerekebilir).
-    *   SQL Editörü'ne yapıştırın ve çalıştırın.
+2.  **Set Up Database Schema**:
+    *   In the Supabase Dashboard, go to the **SQL Editor**.
+    *   Copy the content of the `schema.sql` file (this file is expected to be in the project; if not, you may need to create it manually).
+    *   Paste it into the SQL Editor and run it.
 
-3.  **URL ve Anahtarları Alma**:
-    *   Proje ayarları > **API** sayfasına gidin.
-    *   "anon" / "public" anahtarını ve URL'yi kopyalayın.
-    *   Bu bilgileri projenizin kök dizininde **`.env.local`** adlı bir dosya oluşturarak aşağıdaki formatta ekleyin:
+3.  **Get URL and Keys**:
+    *   Go to Project settings > **API** page.
+    *   Copy the "anon" / "public" key and the URL.
+    *   Add this information to a file named **`.env.local`** in your project's root directory in the following format:
         ```env
-        NEXT_PUBLIC_SUPABASE_URL=<sizin-supabase-url>
-        NEXT_PUBLIC_SUPABASE_ANON_KEY=<sizin-anonim-anahtar>
-        NEXT_PUBLIC_KUBI_KEY=<sizin-belirlediğiniz-gizli-anahtar>
+        NEXT_PUBLIC_SUPABASE_URL=<your-supabase-url>
+        NEXT_PUBLIC_SUPABASE_ANON_KEY=<your-anon-key>
+        NEXT_PUBLIC_KUBI_KEY=<your-chosen-secret-key>
         ```
 
-4.  **Kullanıcı Oluşturma**:
-    *   Supabase Dashboard'unda Authentication > **Users** bölümüne gidin.
-    *   "Create User" (Kullanıcı Oluştur) seçeneği ile sitenin kullanıcısını oluşturun (E-posta ve şifre belirleyerek).
-    *   **Not**: Bu proje tek bir kullanıcı için tasarlandığından, kayıt olma gibi özellikler aktif edilmemiştir. Supabase'in "Allow new users to sign up" ayarının kapalı olduğundan emin olun (Authentication > Sign In / Providers > User Signups altında).
+4.  **Create User**:
+    *   In the Supabase Dashboard, go to Authentication > **Users** section.
+    *   Create the site's user with the "Create User" option (by setting an email and password).
+    *   **Note**: Since this project is designed for a single user, features like registration are not enabled. Ensure that Supabase's "Allow new users to sign up" setting is turned off (under Authentication > Sign In / Providers > User Signups).
 
-## Kullanım Özellikleri
+## Usage Features
 
-Bu Supabase yapılandırması aşağıdaki temel işlevselliği sağlar:
+This Supabase configuration provides the following basic functionality:
 
-*   **Kimlik Doğrulama**: Kullanıcı için güvenli giriş sistemi.
-*   **Blog Gönderi Depolama**: Blog yazılarınız için veritabanı altyapısı.
-*   **Sayfa İçeriği Yönetimi**: Ana sayfa ve diğer statik sayfaların içeriklerinin dinamik olarak yönetimi.
-*   **Güvenlik Politikaları**:
-    *   Tüm ziyaretçiler yayınlanmış blog gönderilerini okuyabilir.
-    *   Yalnızca giriş yapmış kullanıcı yeni gönderi oluşturabilir, mevcut gönderileri düzenleyebilir ve silebilir.
+*   **Authentication**: Secure login system for the user.
+*   **Blog Post Storage**: Database infrastructure for your blog posts.
+*   **Page Content Management**: Dynamic management of content for the homepage and other static pages.
+*   **Security Policies**:
+    *   All visitors can read published blog posts.
+    *   Only logged-in users can create new posts, and edit or delete existing ones.
 
-## Güvenlik Notları
+## Security Notes
 
-*   `KUBI_KEY` anahtarınızı ve Supabase anahtarlarınızı daima güvenli ortamlarda saklayın.
-*   Supabase anahtarlarınızı **asla** istemci tarafı (frontend) kodunuzda doğrudan ifşa etmeyin. `.env.local` dosyası bu amaçla kullanılır ve Next.js tarafından güvenli bir şekilde yönetilir.
-*   API isteklerinizin, Supabase tarafında tanımladığınız güvenlik kurallarına (Row Level Security) uygun olduğundan emin olun.
+*   Always keep your `KUBI_KEY` and Supabase keys in secure environments.
+*   **Never** expose your Supabase keys directly in your client-side (frontend) code. The `.env.local` file is used for this purpose and is managed securely by Next.js.
+*   Ensure your API requests comply with the security rules (Row Level Security) you defined on the Supabase side.
 
-## Sayfa İçeriği Yönetimi (`page_contents` Tablosu)
+## Page Content Management (`page_contents` Table)
 
-Ana sayfa ve diğer statik sayfaların içerikleri `page_contents` adlı bir tabloda saklanır.
+The content of the homepage and other static pages is stored in a table named `page_contents`.
 
-*   **Sayfa Tanımlama**:
-    *   Her sayfa, `page_key` adı verilen benzersiz bir anahtar ile tanımlanır.
-    *   Örnek anahtarlar: `homepage` (ana sayfa için), `about` (hakkında sayfası için), `contact` (iletişim sayfası için) vb.
-*   **İçerik Düzenleme İşlemi**:
-    *   Giriş yapmış kullanıcı için ilgili sayfalarda bir "Düzenle" butonu görünür.
-    *   Bu butona tıklandığında, sayfa içeriğini düzenlemek için bir form açılır.
-    *   Giriş yapmamış kullanıcılar düzenleme butonunu göremezler.
-*   **Varsayılan İçerikler**:
-    *   Veritabanı şeması (`schema.sql`) ilk kez kurulduğunda, bazı sayfalar için varsayılan içerikler otomatik olarak eklenir.
+*   **Page Definition**:
+    *   Each page is identified by a unique key called `page_key`.
+    *   Example keys: `homepage` (for the homepage), `about` (for the about page), `contact` (for the contact page), etc.
+*   **Content Editing Process**:
+    *   An "Edit" button appears on relevant pages for logged-in users.
+    *   Clicking this button opens a form to edit the page content.
+    *   Users who are not logged in will not see the edit button.
+*   **Default Contents**:
+    *   When the database schema (`schema.sql`) is first set up, default content for some pages is automatically added.
 
-## Site Özelleştirmeleri ve İpuçları
+## Site Customizations and Tips
 
-*   **Favicon Değişikliği**:
-    *   Sitenin favicon'ları `public/` klasörü altında bulunmaktadır.
-    *   Bu klasördeki dosyaları (örn: `favicon.ico`, `apple-touch-icon.png` vb.) kendi ikonlarınızla değiştirerek site ikonlarını güncelleyebilirsiniz.
-*   **404 Sayfası Yönetimi**:
-    *   **GIF'ler**: Kayıp sayfa (404) üzerinde rastgele gösterilen GIF'ler `app/NotFoundPageContent.tsx` dosyasındaki `gifs` dizisinden yönetilmektedir. Bu diziyi güncelleyerek farklı GIF'ler ekleyebilir veya mevcutları değiştirebilirsiniz.
-    *   **Sayfa Başlığı**: 404 sayfasının tarayıcı sekmesinde görünen başlığı `app/not-found.tsx` dosyasındaki `metadata` objesi üzerinden ayarlanmaktadır.
-*   **Gizli Giriş Modalı**:
-    *   Sitenin herhangi bir yerinde "kubinet.dev" yazısına  **üç kez** hızlıca tıklandığında giriş yapma modalı açılır. 
-    *   Giriş yapmak için `.env.local` dosyanızda tanımladığınız `NEXT_PUBLIC_KUBI_KEY` değerini ve Supabase'de oluşturduğunuz kullanıcının e-posta ve şifresini kullanmanız gerekecektir.
-*   **Markdown Desteği**:
-    *   Blog gönderileri ve `page_contents` tablosu aracılığıyla yönetilen sayfa içerikleri **Markdown** formatını desteklemektedir. İçeriklerinizi Markdown sözdizimi kullanarak zengin metin formatında (başlıklar, listeler, kalın/italik metin, kod blokları vb.) oluşturabilirsiniz. 
+*   **Changing Favicon**:
+    *   The site's favicons are located in the `public/` folder.
+    *   You can update the site icons by replacing the files in this folder (e.g., `favicon.ico`, `apple-touch-icon.png`, etc.) with your own icons.
+*   **404 Page Management**:
+    *   **GIFs**: GIFs randomly displayed on the not-found page (404) are managed from the `gifs` array in the `app/NotFoundPageContent.tsx` file. You can add different GIFs or change existing ones by updating this array.
+    *   **Page Title**: The title of the 404 page displayed in the browser tab is set via the `metadata` object in the `app/not-found.tsx` file.
+*   **Hidden Login Modal**:
+    *   A login modal opens when you quickly click on the "kubinet.dev" text (usually found in the logo or site title) **three times** anywhere on the site.
+    *   To log in, you will need to use the `NEXT_PUBLIC_KUBI_KEY` value defined in your `.env.local` file and the email and password of the user you created in Supabase.
+*   **Markdown Support**:
+    *   Blog posts and page content managed through the `page_contents` table support **Markdown** format. You can create your content in rich text format (headings, lists, bold/italic text, code blocks, etc.) using Markdown syntax.
 
-## Todo (Yapılacaklar)
+## Todo
 
-Projeye gelecekte eklemeyi planladığım özellikler:
+Features I plan to add to the project in the future:
 
-- Blog gönderilerine yorum yapabilme özelliği eklenecek.
-- Navigasyon çubuğuna (navbar) yeni sayfalar (örneğin "Projelerim", "Hakkımda" gibi) dinamik olarak eklenebilecek.
-
-    
+- Ability to add comments to blog posts.
+- Dynamically add new pages (e.g., "My Projects", "About Me") to the navigation bar (navbar). 
